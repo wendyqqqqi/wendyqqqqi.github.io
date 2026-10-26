@@ -1,0 +1,180 @@
+/* Wen Qi — personal academic site. Plain HTML + CSS, no build step. */
+
+html { font-size: 19px; -webkit-text-size-adjust: 100%; scroll-behavior: smooth; background: var(--bg); }
+
+/* Light is the default; the toggle writes data-theme="dark" and remembers it. */
+:root {
+  color-scheme: light;
+  --bg: #fdfcfa;
+  --fg: #1c1c1c;
+  --fg-2: #2e2e2e;
+  --fg-3: #4b4b4b;
+  --muted: #6a6a6a;
+  --faint: #8c8c8c;
+  --accent: #1f4e79;
+  --accent-hover: #0d2b4d;
+  --line: #d9d6d0;
+  --line-soft: #e6e3dd;
+  --line-faint: #efede8;
+  --tag-bg: #eef2f6;
+  --nav-bg: rgba(253, 252, 250, 0.94);
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #15171c;
+  --fg: #e6e6e6;
+  --fg-2: #d2d4d7;
+  --fg-3: #aeb3bb;
+  --muted: #9298a2;
+  --faint: #767c86;
+  --accent: #8fb3e6;
+  --accent-hover: #b4cdf2;
+  --line: #3a404a;
+  --line-soft: #2c313a;
+  --line-faint: #23272e;
+  --tag-bg: #232933;
+  --nav-bg: rgba(21, 23, 28, 0.92);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: 'Times New Roman', Times, 'Nimbus Roman', 'Liberation Serif', serif;
+  line-height: 1.6;
+  color: var(--fg);
+  background: var(--bg);
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); text-decoration: underline; text-underline-offset: 0.18em; text-decoration-thickness: 0.06em; }
+a:hover { color: var(--accent-hover); }
+img { max-width: 100%; display: block; }
+
+/* ---------- Top nav ---------- */
+.topnav {
+  position: sticky; top: 0; z-index: 10;
+  background: var(--nav-bg);
+  backdrop-filter: saturate(180%) blur(8px);
+  -webkit-backdrop-filter: saturate(180%) blur(8px);
+  border-bottom: 1px solid var(--line-faint);
+  margin: 0 -1.5rem 2.5rem;
+  padding: 0.7rem 1.5rem;
+}
+.topnav-inner { max-width: 960px; margin: 0 auto; display: flex; align-items: center; gap: 1.5rem; font-size: 0.9rem; flex-wrap: wrap; }
+.topnav a { color: var(--fg-3); text-decoration: none; padding: 0.15rem 0; border-bottom: 1px solid transparent; transition: color .15s, border-color .15s; }
+.topnav a:hover { color: var(--fg); border-bottom-color: var(--fg); }
+.topnav a[aria-current="page"] { color: var(--accent); border-bottom-color: var(--accent); }
+.topnav-home { font-weight: 600; color: var(--fg) !important; margin-right: 0.4rem; }
+.topnav-links { display: flex; align-items: center; gap: 1.4rem; flex-wrap: wrap; }
+
+/* Social icons, top right of the nav */
+.social { margin-left: auto; display: inline-flex; align-items: center; gap: 0.9rem; }
+.social a { display: inline-flex; color: var(--fg-3); border-bottom: 0 !important; padding: 0; line-height: 0; }
+.social a:hover { color: var(--accent); }
+.social svg { width: 1.15rem; height: 1.15rem; }
+
+.theme-toggle {
+  margin-left: 0.2rem; display: none; align-items: center; gap: 0.4rem;
+  background: none; border: 0; padding: 0; cursor: pointer; line-height: 0; color: var(--fg-3);
+}
+html.js .theme-toggle { display: inline-flex; }
+.theme-toggle svg { width: 1rem; height: 1rem; }
+.theme-toggle .ic-moon { display: none; }
+:root[data-theme="dark"] .theme-toggle .ic-sun { display: none; }
+:root[data-theme="dark"] .theme-toggle .ic-moon { display: block; }
+
+/* ---------- Hero ---------- */
+.hero { display: flex; gap: 2rem; align-items: flex-start; margin-bottom: 2.5rem; }
+.portrait { width: 160px; height: 200px; object-fit: cover; object-position: top center; flex-shrink: 0; border-radius: 3px; background: var(--line-soft); }
+.hero-text { min-width: 0; }
+.hero h1 { font-size: 2rem; font-weight: 600; margin: 0 0 0.5rem; line-height: 1.15; letter-spacing: -0.01em; }
+.hero .affil { margin: 0 0 0.9rem; color: var(--fg-2); line-height: 1.5; }
+.hero .links { margin: 0; font-size: 0.95rem; line-height: 1.7; }
+.hero .links a { margin-right: 0.9rem; white-space: nowrap; }
+
+/* ---------- Sections ---------- */
+main > section { margin-top: 2.6rem; scroll-margin-top: 4.5rem; }
+h2 {
+  font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--fg); margin: 0 0 1rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--line);
+}
+h3.sub { font-size: 1.02rem; font-weight: 600; font-style: italic; margin: 1.6rem 0 0.6rem; color: var(--fg-2); }
+section p { margin: 0 0 0.95rem; line-height: 1.7; }
+section p:last-child { margin-bottom: 0; }
+.lead { font-size: 1.04rem; }
+.market { margin-top: 1.3rem; font-style: italic; border-left: 2px solid var(--accent); padding-left: 0.85rem; }
+
+.plain { list-style: disc outside; margin: 0; padding-left: 1.15rem; }
+.plain li { margin: 0 0 0.45rem; }
+.plain li::marker { color: var(--faint); }
+
+/* Date-rail lists (education, news, grants, talks, teaching) */
+.rail { list-style: none; margin: 0; padding: 0; }
+.rail li { display: grid; grid-template-columns: 9rem 1fr; column-gap: 1rem; padding: 0.4rem 0; border-top: 1px solid var(--line-faint); }
+.rail li:first-child { border-top: 0; padding-top: 0; }
+.rail .when { color: var(--muted); font-size: 0.9rem; font-variant-numeric: tabular-nums; padding-top: 0.1rem; }
+.rail .what { min-width: 0; }
+.rail .what small, .rail .what .note { display: block; color: var(--muted); font-size: 0.9rem; }
+
+/* ---------- Papers ---------- */
+.papers { list-style: none; padding: 0; margin: 0; }
+.paper { padding: 1rem 0; border-top: 1px solid var(--line-faint); }
+.paper:first-child { border-top: 0; padding-top: 0.2rem; }
+.paper h3 { font-size: 1.06rem; font-weight: 600; line-height: 1.4; margin: 0 0 0.3rem; }
+.paper .byline { margin: 0 0 0.2rem; color: var(--fg); font-size: 0.97rem; }
+.paper .byline b { font-weight: 600; }
+.paper .venue { margin: 0 0 0.35rem; font-size: 0.93rem; color: var(--muted); }
+.paper .venue em { color: var(--fg-3); }
+.tag { display: inline-block; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 600; color: var(--accent); background: var(--tag-bg); padding: 0.12rem 0.5rem; border-radius: 3px; margin-right: 0.4rem; vertical-align: 0.1em; }
+.paper .plinks { font-size: 0.9rem; margin: 0; }
+.paper .plinks a { margin-right: 0.8rem; }
+.paper details { margin: 0.5rem 0 0; }
+.paper summary {
+  cursor: pointer; display: inline-block; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.08em;
+  font-weight: 600; color: var(--accent); list-style: none; padding: 0.15rem 0; user-select: none;
+}
+.paper summary::-webkit-details-marker { display: none; }
+.paper summary::before { content: "+"; display: inline-block; width: 1em; color: var(--faint); font-weight: 400; }
+.paper details[open] summary::before { content: "\2212"; }
+.paper details > p { margin: 0.5rem 0 0; padding-left: 1rem; border-left: 2px solid var(--line-soft); color: var(--fg-2); font-size: 0.95rem; line-height: 1.6; }
+
+/* ---------- Teaching ---------- */
+.course { margin: 0 0 1rem; }
+.course .code { font-weight: 600; }
+.course .terms { color: var(--muted); font-size: 0.92rem; }
+
+/* ---------- Copy button & footer ---------- */
+.copy-btn { display: none; font-family: inherit; font-size: 0.74rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--faint); background: none; border: 0; padding: 0; margin-left: 0.5rem; cursor: pointer; }
+html.js .copy-btn { display: inline; }
+.copy-btn:hover, .copy-btn.copied { color: var(--accent); }
+
+footer { margin-top: 3.5rem; padding-top: 1rem; border-top: 1px solid var(--line-faint); color: var(--faint); font-size: 0.85rem; }
+footer p { margin: 0 0 0.3rem; }
+footer .updated { text-align: right; font-style: italic; margin-top: 0.4rem; }
+
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ---------- Small screens ---------- */
+@media (max-width: 640px) {
+  html { font-size: 17px; }
+  body { padding: 0 1rem 3rem; }
+  .topnav { margin: 0 -1rem 2rem; padding: 0.6rem 1rem; }
+  /* Two rows on phones: name + page links, then the icons right-aligned. */
+  .topnav-inner { gap: 0.5rem 0.8rem; flex-wrap: wrap; font-size: 0.84rem; }
+  .topnav-links { gap: 0.8rem; flex-wrap: nowrap; }
+  .topnav-home { margin-right: 0; white-space: nowrap; }
+  .social { margin-left: auto; gap: 0.8rem; }
+  .social svg { width: 1.05rem; height: 1.05rem; }
+  .hero { flex-direction: column; gap: 1.2rem; }
+  .portrait { width: 140px; height: 175px; }
+  .rail li { grid-template-columns: 1fr; row-gap: 0.1rem; }
+}
+
+@media print {
+  .topnav, .theme-toggle, .copy-btn { display: none !important; }
+  body { max-width: none; }
+  a { color: inherit; text-decoration: none; }
+}
