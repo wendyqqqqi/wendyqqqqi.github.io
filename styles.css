@@ -91,7 +91,11 @@ html.js .theme-toggle { display: inline-flex; }
 .portrait { width: 160px; height: 200px; object-fit: cover; object-position: top center; flex-shrink: 0; border-radius: 3px; background: var(--line-soft); }
 .hero-text { min-width: 0; }
 .hero h1 { font-size: 2rem; font-weight: 600; margin: 0 0 0.5rem; line-height: 1.15; letter-spacing: -0.01em; }
-.hero .affil { margin: 0 0 0.9rem; color: var(--fg-2); line-height: 1.5; }
+.hero .affil { margin: 0 0 1rem; }
+.hero .affil p { margin: 0 0 0.6rem; color: var(--fg-2); line-height: 1.45; }
+.hero .affil p:last-child { margin-bottom: 0; }
+.hero .affil .role { font-weight: 600; color: var(--fg); }
+.hero .affil .inst { font-style: italic; color: var(--muted); font-size: 0.95rem; }
 .hero .links { margin: 0; font-size: 0.95rem; line-height: 1.7; }
 .hero .links a { margin-right: 0.9rem; white-space: nowrap; }
 
@@ -103,6 +107,8 @@ h2 {
 }
 h3.sub { font-size: 1.02rem; font-weight: 600; font-style: italic; margin: 1.6rem 0 0.6rem; color: var(--fg-2); }
 section p { margin: 0 0 0.95rem; line-height: 1.7; }
+/* Justified paragraphs everywhere */
+section p, .plain li, .paper details > p { text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
 section p:last-child { margin-bottom: 0; }
 .lead { font-size: 1.04rem; }
 .market { margin-top: 1.3rem; font-style: italic; border-left: 2px solid var(--accent); padding-left: 0.85rem; }
